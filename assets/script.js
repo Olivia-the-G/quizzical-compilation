@@ -47,23 +47,18 @@ startBtn.addEventListener("click", function startQuiz() {
 
 var timerEl = document.getElementById("timer");
 
-var timeLeft = 120;
+var timeLeft = 10;
+var timeInterval = 0
 
 startBtn.addEventListener("click", function startTimer(){
-  var timeInterval = setInterval(function() {
-    if (timeLeft > 1) {
+  timeInterval = setInterval(function() {
+    if (timeLeft >= 1) {
       timerEl.textContent = `Seconds Remaining: ${timeLeft}`;
       timeLeft--;
-    } else {
-      timerEl.textContent = '';
-      clearInterval(timeInterval);
-      quizContainer.classList.replace("show", "hide");
-      inputForm.classList.replace("hide", "show");
+    } else { 
+      endQuiz();
     };
   }, 1000);
-  //this is the function where you set the interval
-  //make sure your variables are global since you will be using them in other functions
-  //endquiz is called here inside if timer is equal to zero
 }); 
 
 function checkAnswer(answer){
@@ -77,11 +72,12 @@ function checkAnswer(answer){
 //time loses 5 seconds
 }
 
-function endQuiz(){
-  //in this fucntion you will clear interval for timer to stop
-  //hide quiz container
-  //make input-form appear
-}
+function endQuiz() { 
+  clearInterval(timeInterval);
+  timerEl.textContent = '';
+  quizContainer.classList.replace("show", "hide");
+  inputForm.classList.replace("hide", "show");
+};
 
 function storage(){
   //in this function you will get the value of the input
