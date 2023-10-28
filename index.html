@@ -10,21 +10,36 @@
 <body>
   <header>
     <h1><a href="#highscores">View Highscores</a></h1>
-    <h1>Time</h1>
+    <h1 id="timer"></h1>
   </header>
 
   <main>
-    <h2>Question:</h2>
-      <ol>
-        <li><button>Answer 1</button></li>
-        <li><button>Answer 1</button></li>
-        <li><button>Answer 1</button></li>
-        <li><button>Answer 1</button></li>
+    <section class="start-container">
+      <h2 id="code-quiz">Code Quiz</h2>
+      <p id="rules">The rules of the Quiz</p>
+      <div>
+        <button id="start-btn">Start</button>     
+      </div>
+    </section>
+
+    <section class="quiz-container hide">
+    <h2 id="question">Question:</h2>
+      <ol id="answer-buttons">
+       
       </ol>
       <p id="feedback"> ? </p>
+    </section>
 
+    <form class="input-form hide">
+      <input id="that-input" type="text">
+      <button>submit</button>
+    </form>
     
   </main>
 
+  
 </body>
+
+<script src="./assets/script.js"></script>
+
 </html>

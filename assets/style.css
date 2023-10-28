@@ -16,23 +16,38 @@ h1 {
   font-size: 30px;
 }
 
+#timer {
+  padding: 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 30px;
+}
+
 a {
   text-decoration: none;
   color: chartreuse;
 }
 
 h2 {
-  padding: 20px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 40px;
+  font-size: 35px;
   color: black;
+}
+
+#question {
+  padding: 20px;
+}
+
+#code-quiz {
+  padding: 20px 20px 5px 20px;
+  font-size: 45px;
+  display: flex;
+  justify-content: center;
 }
 
 p {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 20px;
   color: chartreuse;
-  padding: 10px;
 }
 
 main {
@@ -50,6 +65,14 @@ ol {
 
 li {
   padding: 3px;
+  display: flex;
+  justify-content: center;
+}
+
+div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 button {
@@ -59,10 +82,25 @@ button {
   font-size: 20px;
   border-radius: 20px;
   padding: 15px;
-  width: 75%;
+  width: 80%;
 }
 
 #feedback {
   border-top: 1px chartreuse solid;
   width: 100%;
+  padding: 10px;
+}
+
+#rules {
+  display: flex;
+  justify-content: center;
+  padding: 0px 10px 25px 10px;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: show;
 }
