@@ -1,56 +1,85 @@
+//quiz questions
 
 var myQuestions = [
   {
     question:"If you need to perform an action on a set of data multiple times, you would use _______.",
     answers:["an if statement", "a for loop","a variable", "a function"],
-    correct:"a for loop"
+    right:"a for loop",
+    last: false
   },
   {
     question:"What is the opposite of the strict equality operator (===)?",
     answers:["==", "---","!==", "!!!"],
-    correct:"!=="
+    right:"!==",
+    last: true
   }
-]
+];
 
-var index = 0
+let index = 0;
 
-var startContainer = document.querySelector(".start-container")
-var quizContainer = document.querySelector(".quiz-container")
-var inputForm = document.querySelector(".input-form")
-var ol = document.getElementById("answer-buttons")
+//reference html elements
+var startContainer = document.querySelector(".start-container");
+var quizContainer = document.querySelector(".quiz-container");
+var inputForm = document.querySelector(".input-form");
+var ol = document.getElementById("answer-buttons");
+var startBtn = document.getElementById("start-btn");
+var feedbackContainer = document.getElementById("feedback");
 
-var startBtn = document.getElementById("start-btn") 
-
-startBtn.addEventListener("click", function startQuiz() {
+function startQuiz() {
  
-  console.log("working")
-   if (index == myQuestions.length) { //end quiz is called here if index is equal to myQuestions.length
-     endQuiz();
-   };
+  console.log(index)
+
 
    startContainer.classList.add("hide")
    quizContainer.classList.replace("hide","show")
+  //plug in the question using textContent
+     var screenQuestion = document.getElementById("question");
+     screenQuestion.textContent = myQuestions[index].question;
 
-   for (var i = 0; i < myQuestions.length; i++) {  //plug in the question using textContent
-     var question = document.getElementById("question");
-     question.textContent = myQuestions[index].question;
-    };
 
-    for (var x = 0; x < myQuestions[index].answers.length; x++) {  //for loop to iterate through answer array inside myQuestion array 
+      for (var x = 0; x < myQuestions[index].answers.length; x++) {  //for loop to iterate through answer array inside myQuestion array 
       var li = document.createElement("li"); //inside the for loop you create the element li, then the element of button
       var button = document.createElement("button");
       li.appendChild(button);
       ol.appendChild(li); 
       button.textContent = myQuestions[index].answers[x];
-    };
-});
+      };
+
+      ol.addEventListener("click", checkAnswer);
+      
+      function checkAnswer() {
+        if (myQuestions[index].answers === myQuestions[index].right) {
+          feedbackContainer.textContent = "Correct";
+          nextQuestion();
+        } else {
+          feedbackContainer.textContent = "Incorrect";
+          nextQuestion();
+        }
+       
+      } 
+
+      function nextQuestion() {
+        if (myQuestions[index].last === true) {
+          endQuiz();
+        } else {   
+        index++;
+        console.log(index)
+        screenQuestion.textContent = myQuestions[index].question;
+      }
+      };
+
+      
+};
+//start quiz when start button is clicked
+startBtn.addEventListener("click", startQuiz);
+
 
 var timerEl = document.getElementById("timer");
+var timeLeft = 100;
+var timeInterval = 0;
 
-var timeLeft = 10;
-var timeInterval = 0
-
-startBtn.addEventListener("click", function startTimer(){
+//start timer when start button is clicked
+startBtn.addEventListener("click", function startTimer() {
   timeInterval = setInterval(function() {
     if (timeLeft >= 1) {
       timerEl.textContent = `Seconds Remaining: ${timeLeft}`;
@@ -61,17 +90,26 @@ startBtn.addEventListener("click", function startTimer(){
   }, 1000);
 }); 
 
-function checkAnswer(answer){
-//in this function you will create an if statement comparing the answer to the correct property of myQuestions
-//if it is true (meaning the answer is correct)
-//then index goes up - index++
-//score goes up - score ++ (declare score globally)
-//and you call function startQuiz here
+var score = 0;
 
-//else index goes up
-//time loses 5 seconds
-}
+//check if the correct answer was selected 
 
+//   var tgt = e.target.textContent; 
+
+//   console.log(e.target.textContent);
+//  if (tgt === myQuestions[index].right) { //in this function you will create an if statement comparing the answer to the correct property of myQuestions
+//    index++;
+//    score++;
+//    startQuiz
+//  } else {
+//    index++;
+//    console.log(index)
+//    timeLeft -= 5; 
+//    startQuiz
+//  };
+// };
+
+//end quiz
 function endQuiz() { 
   clearInterval(timeInterval);
   timerEl.textContent = '';
