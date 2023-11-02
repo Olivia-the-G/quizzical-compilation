@@ -49,14 +49,15 @@ function startQuiz() {
       
       function checkAnswer() {
         if (myQuestions[index].answers === myQuestions[index].right) {
-          feedbackContainer.textContent = "Correct";
+          feedbackContainer.textContent = `Score: ${score} - Correct!`;
+          score++;
           nextQuestion();
         } else {
-          feedbackContainer.textContent = "Incorrect";
+          feedbackContainer.textContent = `Score: ${score} - Incorrect`;
+          timeLeft -= 5;
           nextQuestion();
-        }
-       
-      } 
+        };
+      };
 
       function nextQuestion() {
         if (myQuestions[index].last === true) {
@@ -65,10 +66,8 @@ function startQuiz() {
         index++;
         console.log(index)
         screenQuestion.textContent = myQuestions[index].question;
-      }
+        };
       };
-
-      
 };
 //start quiz when start button is clicked
 startBtn.addEventListener("click", startQuiz);
